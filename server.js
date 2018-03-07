@@ -22,7 +22,9 @@ var express			= require('express'),
   process.env.OPENSHIFT_MONGODB_DATABASE;
 }
 else {
-	url=url+"localhost:27017/tocp-quiz-db";
+	//url=url+"localhost:27017/tocp-quiz-db";
+	url=url+"172.30.168.175:27017/quizdb";
+
 }
 console.log("MongoDB Connection URL:"+url);
 
