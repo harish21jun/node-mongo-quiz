@@ -7,7 +7,7 @@ var quizController = require('../controllers/quiz');
 var sessionController = require('../controllers/session');
 var userController = require('../controllers/user');
 var statisticsController = require('../controllers/statistics');
-var mailController = require('../controllers/mail');
+//var mailController = require('../controllers/mail');
 
 router.get('/', function(req, res) {
 	res.render('index', {
@@ -60,6 +60,6 @@ router.delete('/quizzes/:quizId(\\d+)', sessionController.loginRequired, quizCon
 //router.post('/quizzes/:quizId(\\d+)/comments', commentController.create);
 //router.get('/quizzes/:quizId(\\d+)/comments/:commentId(\\d+)/publish',sessionController.loginRequired, commentController.ownershipRequired, commentController.publish);
 
-router.get('/sendMail',mailController.sendMail);
+//router.get('/sendMail',mailController.sendMail);
 
 module.exports = router;
