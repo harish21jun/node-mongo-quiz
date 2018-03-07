@@ -1,0 +1,26 @@
+<div class="jumbotron">
+	<ul class="list-group">
+		<%if (answer && answer=='Correct'){%>
+
+		<p style="color:green"><%= answer %></p>
+		<img width="500" height="400" src="https://1.bp.blogspot.com/-Kok9t6DvKEw/WpySEfUda5I/AAAAAAAAD9I/hSPVUGYG5eUfxub4ls3NQ2YWNViQhSQWQCLcBGAs/s1600/Happy-Panda.gif">
+
+
+
+		<%} else {%>
+			<p style="color:red"><%= answer %></p>
+<img width="500" height="400" src="https://4.bp.blogspot.com/-VO_Ledu50TA/WpySwtx40kI/AAAAAAAAD9Q/IlG07uPPIPsYQWy77IsW5sJYecH7dBOzACLcBGAs/s640/Unhappy-Panda.gif">
+		<%} %>
+
+	</ul>
+
+	<a class="btn btn-sm btn-primary" href="/quizzes/<%= quiz.id %>">Back</a>&nbsp;&nbsp;
+
+	<%if (len>quiz.id) {%>
+	<a class="btn btn-sm btn-primary" href="/quizzes/<%= quiz.id+1 %>">Next</a>&nbsp;&nbsp;
+	<%} else{%>
+			<a class="btn btn-sm btn-primary" href="/statistics %>">Show Score</a>&nbsp;&nbsp;
+<%} %>
+
+	<a class="btn btn-sm btn-primary" href="/quizzes/">Quizzes</a>
+</div>

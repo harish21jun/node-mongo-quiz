@@ -1,0 +1,59 @@
+<div class="jumbotron">
+	<%if (quiz.image){%>
+		<center><img class="img-rounded img-responsive" src="/media/<%= quiz.image %>"  width="800" height="800"></center>
+	<%}%>
+	<form method="get" action="/quizzes/<%= quiz.id %>/answer">
+		<h3><%= quiz.question %> (<%= quiz.thematic %>)</h3>
+  <span id="optionsInputControl" class="control-group">
+		<%
+		var i;
+		var opts;
+		if(null!=quiz.options){
+			opts=quiz.options.split(",")
+		 for (i=0; i < opts.length; i++) {
+
+			 %>
+			 <input type="radio" name="ops" value="<%= opts[i] %>" ><%= opts[i] %><br>
+
+<% }
+}%>
+</span>
+
+		<p>
+			<input style="visibility:hidden" id ="answer" type="text" name="answer" value="" class="form-control"/>
+			<input class="btn btn-sm btn-primary" type="submit" value="Submit" onclick="myFunction();">
+<!--
+			<a class="btn btn-sm btn-primary" href="/quizzes/<%= quiz.id %>/comments/new" role="button">New commentary</a>
+		-->
+		</p>
+	</form>
+
+	<script>
+function myFunction() {
+	var optionsInputControl = document.getElementById('optionsInputControl');
+	var tags = optionsInputControl.getElementsByTagName('input');
+    		for (var i=0, len=tags.length; i<len; i++) {
+				if ( tags[i].type === 'radio' ) {
+					if ( tags[i].checked )
+						document.getElementById('answer').value=tags[i].value;
+						}
+					}
+				}
+
+</script>
+
+<!--
+	<h3>Comentaries:</h3>
+	<%for(index in quiz.Comments){%>
+		<%if(quiz.Comments[index].publish){%>
+			<p class="commentary">
+				<i><%=quiz.Comments[index].text%></i>
+			</p>
+		<%} else if(session.user && (session.user.isAdmin || (session.user && quiz.UserId === session.user.id))){%>
+				<p class="commentary"><%=quiz.Comments[index].text%>
+					<a class="btn btn-xs btn-success" href="/quizzes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish">Publish</a>
+				</p>
+		<%}%>
+	<%}%>
+-->
+</div>
