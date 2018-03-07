@@ -9,10 +9,7 @@
   },
   "author": "Harish",
   "homepage": "https://github.com/harish21jun/node-mongo-quiz",
-  "devDependencies": {
-    "sqlite3": "^3.0.4"
-  },
-  "dependencies": {
+   "dependencies": {
     "body-parser": "^1.12.4",
     "cookie-parser": "^1.3.5",
     "crypto": "0.0.3",
