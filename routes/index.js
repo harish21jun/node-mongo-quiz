@@ -26,6 +26,17 @@ router.get('/author', function(req, res) {
 	});
 });
 */
+
+router.get('/pagecount', function(req, res) {
+	console.log("Inside pagecount entry");
+	res.render('index', {
+		page : 'home',
+		title: 'TOCP Quiz',
+		errors: []
+	});
+	console.log("Inside pagecount exit");
+});
+
 router.get('/statistics',statisticsController.calculate);
 
 router.param('quizId', quizController.load);
