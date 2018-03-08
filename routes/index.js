@@ -10,6 +10,7 @@ var statisticsController = require('../controllers/statistics');
 //var mailController = require('../controllers/mail');
 
 router.get('/', function(req, res) {
+	console.log("Inside get / ");
 	res.render('index', {
 		page : 'home',
 		title: 'TOCP Quiz',
@@ -17,13 +18,14 @@ router.get('/', function(req, res) {
 	});
 });
 
+/*
 router.get('/author', function(req, res) {
 	res.render('author', {
 		page : 'about',
 		errors: []
 	});
 });
-
+*/
 router.get('/statistics',statisticsController.calculate);
 
 router.param('quizId', quizController.load);
