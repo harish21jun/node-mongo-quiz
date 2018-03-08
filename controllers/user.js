@@ -43,7 +43,7 @@ req.collections.user.findOne({username:login, password:encripted},function(error
 	};
 
 // GET /user/:id/edit
-exports.edit = function(req, res) {
+exports.edit = function(req, res,next) {
 	res.render('user/edit', {
 		page : 'user-edit',
 		user: req.user,
@@ -52,7 +52,7 @@ exports.edit = function(req, res) {
 };
 
 // GET /user
-exports.new = function(req, res) {
+exports.new = function(req, res,next) {
 	var user = {
 		username: '',
 		password: ''
@@ -103,7 +103,7 @@ req.collections.user.findOne({}, {sort: {_id: -1}}, function(error, user)  {
 */
 
 
-exports.create = function(req, res) {
+exports.create = function(req, res,next) {
 var userId = 0;
 var encripted = crypto.createHmac('sha1', key).update(req.body.user.password).digest('hex');
 if (req.body.user.password === '') { encripted = '';}
@@ -154,7 +154,7 @@ exports.update = function(req, res, next) {
 
 
 // DELETE /user/:id
-exports.destroy = function(req, res) {
+exports.destroy = function(req, res,next) {
 	//console.log("destroy"+req.user.id);
 	req.collections.user.remove({id:req.user.id}, function(error, count) {
 		 if (error)
