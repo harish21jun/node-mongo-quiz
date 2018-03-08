@@ -32,7 +32,8 @@ console.log("MongoDB Connection URL:"+url);
 
 	mongodb.MongoClient.connect(url, (error, database) => {
 	  if (error) return process.exit(1)
-	  collections = {
+	    console.log("MongoDB connected successfully");
+		collections = {
 		 user: database.collection('Users'),
 		 quiz: database.collection('Quiz')
 		}
