@@ -29,7 +29,7 @@ exports.load = function(req, res, next, quizId) {
 
 // GET /quizzes
 // GET /users/:userId/quizzes
-exports.index = function(req, res) {
+exports.index = function(req, res,next) {
 	var options = {};
 	var query = url.parse(req.url,true).query;
 	var quizzes;
@@ -79,7 +79,7 @@ req.collections.quiz.find(options, {sort: {_id: 1}}).toArray((error, qss) => {
 */
 
 // GET /quizzes/:id
-exports.show = function(req, res) {
+exports.show = function(req, res,next) {
 	res.render('quizzes/show', {
 		page : 'quiz-show',
 		quiz: req.quiz,
@@ -88,7 +88,7 @@ exports.show = function(req, res) {
 };
 
 // GET /quizzes/:id/answer
-exports.answer = function(req, res) {
+exports.answer = function(req, res,next) {
 	var result = 'Incorrect';
 
 	if(!req.session.user.correctCount)
@@ -118,7 +118,7 @@ exports.answer = function(req, res) {
 };
 
 // GET /quizzes/new
-exports.new = function(req, res) {
+exports.new = function(req, res,next) {
 	var quiz = {
 		question: '',
 		answer: ''
@@ -147,7 +147,7 @@ exports.new = function(req, res) {
 */
 
 // POST /quizzes/create
-exports.create = function(req, res) {
+exports.create = function(req, res,next) {
 var quizLength = 0;
 	req.body.quiz.UserId = req.session.user.id;
 	if (req.files.image) {
@@ -179,7 +179,7 @@ req.collections.quiz.insert(req.body.quiz, (err, results) => {
 
 
 // GET /quizzes/:id/edit
-exports.edit = function(req, res) {
+exports.edit = function(req, res,next) {
 	var quiz = req.quiz;
 
 	console.log(quiz);
@@ -192,7 +192,7 @@ exports.edit = function(req, res) {
 };
 
 // PUT /quizzes/:id
-exports.update = function(req, res) {
+exports.update = function(req, res,next) {
 	if (req.files.image) {
 		req.quiz.image = req.files.image.name;
 	}
@@ -216,7 +216,7 @@ req.collections.quiz.update({id:req.quiz.id} ,{$set: {"question": req.quiz.quest
 )};
 
 // DELETE /quizzes/:id
-exports.destroy = function(req, res) {
+exports.destroy = function(req, res,next) {
 	req.collections.quiz.remove({id:req.quiz.id}, function(error, count) {
 		 if (error)
 		 console.log(error);
