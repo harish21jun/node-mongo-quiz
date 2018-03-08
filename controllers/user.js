@@ -32,7 +32,7 @@ exports.auth = function(req,login, password, callback) {
   if (password === '') { encripted = '';  }
 
 req.collections.user.findOne({username:login, password:encripted},function(error, user) {
- if (error) return next(error);
+ if (error) return callback(error);
  if(user){
  		callback(null, user);
 		}
