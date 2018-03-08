@@ -12,9 +12,16 @@ var express			= require('express'),
 	dotenv			= require('dotenv');
 	const mongodb= require('mongodb')
 	var url = "mongodb://";//localhost:27017/tocp-quiz-db'
+	var MONGODB_PASSWORD="fGIV6roouwcnfA4d";
+	var MONGODB_USER="userBEH";
+	var MONGODB_DATABASE="quizdb";
+	var MONGODB_SERVICE_HOST="172.30.168.175";
+	var MONGODB_SERVICE_PORT = "27017";
+
+	
 
 
-	if(process.env.OPENSHIFT_MONGODB_PASSWORD){
+if(process.env.OPENSHIFT_MONGODB_PASSWORD){
   url = url+process.env.OPENSHIFT_MONGODB_USER + ":" +
   process.env.OPENSHIFT_MONGODB_PASSWORD + "@" +
   process.env.OPENSHIFT_MONGODB_SERVICE_HOST + ':' +
@@ -23,8 +30,12 @@ var express			= require('express'),
 }
 else {
 	//url=url+"localhost:27017/tocp-quiz-db";
-	url=url+"172.30.168.175:27017/quizdb";
-
+	//url=url+"172.30.168.175:27017/quizdb";
+	url=url+MONGODB_USER+ ":" +
+		MONGODB_PASSWORD+ "@" +
+		MONGODB_SERVICE_HOST + ':' +
+		MONGODB_SERVICE_PORT + '/' +
+		MONGODB_DATABASE;
 }
 console.log("MongoDB Connection URL:"+url);
 
